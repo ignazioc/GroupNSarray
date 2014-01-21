@@ -10,6 +10,6 @@
 
 @implementation Customer
 -(NSString *)description {
-    return [NSString stringWithFormat:@"[%. 4d] %@", self.idx, self.name];
+    return [NSString stringWithFormat:@"[% 4ld] %@", self.idx, self.name];
 }
 @end

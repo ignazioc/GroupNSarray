@@ -16,26 +16,30 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         
         NSMutableArray *arr = [NSMutableArray array];
-        for (int i = 0; i<1000; i++) {
+        for (int i = 0; i<100; i++) {
             Customer *c  = [Customer new];
             NSString *name = [NSString stringWithFormat:@"Customer n.%d", i];
             
-            int randNum = rand() % 1000 ;
+            int randNum = rand() % 25 ;
             
             c.name = name;
             c.idx = randNum;
             [arr addObject:c];
             
         }
-        for (int i = 0; i<1000; i++) {
-            NSLog(@"%@", arr[i]);
-        }
+//        for (int i = 0; i<100; i++) {
+//            NSLog(@"%@", arr[i]);
+//        }
         
-        NSDictionary *dict = [arr groupArrayWithBlock:^id<NSCopying>(Customer *obg){
+        
+        NSDictionary *dictionaryForKey = [arr groupByKeyPath:@"name.length"];
+        NSLog(@"Dict: %@", dictionaryForKey);
+        
+        NSDictionary *dictionary = [arr groupUsingBlock:^id<NSCopying>(Customer *obg){
             return @(obg.idx);
         
         }];
-        NSLog(@"Dict: %@", dict);
+        NSLog(@"Dict: %@", dictionary);
         
         
     }

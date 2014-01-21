@@ -10,5 +10,6 @@
 
 @interface NSArray (group)
 
--(NSDictionary *)groupArrayWithBlock:(id<NSCopying> (^)(id obj))block;
+-(NSDictionary *)groupUsingBlock:(id<NSCopying> (^)(id obj))block;
+-(NSDictionary *)groupByKeyPath:(NSString *) keyPath;
 @end

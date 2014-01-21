@@ -11,7 +11,7 @@
 @implementation NSArray (group)
 
 
--(NSDictionary *)groupArrayWithBlock:(id<NSCopying> (^)(id obj))block {
+-(NSDictionary *)groupUsingBlock:(id<NSCopying> (^)(id obj))block {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     
     for (id obj in self) {
@@ -23,5 +23,12 @@
         [dictionary[key] addObject:obj];
     }
     return [dictionary copy];
+}
+
+
+-(NSDictionary *)groupByKeyPath:(NSString *) keyPath {
+    return [self groupUsingBlock:^id<NSCopying>(id obj) {
+        return [obj valueForKeyPath:keyPath];
+    }];
 }
 @end
